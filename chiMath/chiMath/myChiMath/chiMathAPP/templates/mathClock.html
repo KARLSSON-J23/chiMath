@@ -1,0 +1,63 @@
+{% extends 'navbar.html' %}
+
+{% block title %}數學{% endblock %}
+
+{% block content %}
+<!-- 在這裡撰寫該頁面的內容 -->
+<!DOCTYPE html>
+<html>
+{% load static %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <link href="{% static 'admin/css/clock1.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <h3>一起認識可愛大時鐘</h3><br>
+
+    <!-- clock -->
+    <div class="clock" id="clock">
+        <div class="origin"></div>
+        <div class="clock-line hour-line" id="hour-line"></div>
+        <div class="clock-line minute-line" id="minute-line"></div>
+        <div class="clock-line second-line" id="second-line"></div>
+        <div class="date-info" id="date-info"></div>
+        <div class="time-info">
+            <div class="time" id="hour-time"></div>
+            <div class="time" id="minute-time"></div>
+            <div class="time" id="second-time"></div>
+        </div>
+    </div>
+    <script type='text/javascript' src="{% static 'admin/js/clock1.js'%}"></script>
+    <br>
+
+    <!-- table -->
+    <table id="table" style="width: 40%;" border="2" cellpadding="20" margin-left="20S">
+        <tbody>
+            <tr>
+                <td align="center">day</td>
+                <td align="center">hour</td>
+                <td align="center">min</td>
+                <td align="center">sec</td>
+            </tr>
+            <tr>
+                <td id="day" contenteditable="true" onblur="saveData(this)" align="center">0</td>
+                <td id="hour" oninput="hour(event)" min="0" max="24" contenteditable="true" onblur="saveData(this)"
+                    align="center">0</td>
+                <td id="min" oninput="min(event)" min="0" max="59" contenteditable="true" onblur="saveData(this)"
+                    align="center">0</td>
+                <td id="sec" oninput="sec(event)" min="0" max="59" contenteditable="true" onblur="saveData(this)"
+                    align="center">0</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+
+</html>
+{% endblock %}
+<!--子樣板可在 navbar 區塊中覆寫導覽列的內容。
+    如子樣板未覆寫該區塊，則會自動套用 Django Base Template 中的導覽列。 -->

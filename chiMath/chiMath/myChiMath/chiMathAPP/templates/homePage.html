@@ -1,0 +1,12 @@
+{% extends 'navbar.html' %}
+
+{% block title %}首頁{% endblock %}
+
+{% block content %}
+<!-- 在這裡撰寫該頁面的內容 -->
+<div class="bg-light p-5 rounded">
+    <h3>Hi 這裡首頁啦</h3>
+</div>
+{% endblock %}
+<!--子樣板可在 navbar 區塊中覆寫導覽列的內容。
+    如子樣板未覆寫該區塊，則會自動套用 Django Base Template 中的導覽列。 -->

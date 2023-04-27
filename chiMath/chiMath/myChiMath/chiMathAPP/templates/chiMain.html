@@ -1,0 +1,85 @@
+{% extends 'navbar.html' %}
+
+{% block title %}國文{% endblock %}
+
+{% block content %}
+<!-- 在這裡撰寫該頁面的內容 -->
+<!DOCTYPE html>
+<html>
+{% load static %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'admin/css/chiMain.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="bg-light p-5 rounded">
+        <h1>耶 這裡是國文</h1>
+        <form action="" method="Post">
+            {% csrf_token %}
+            <input name="word" placeholder="請輸入所要查詢文字">
+            <input type="submit" value="查詢">
+        </form>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>查詢文字</th>
+                    <th>全字庫IDS</th>
+                    <th>字統網IDS&部件</th>
+                    <th>部件</th>
+                    <th>圖片</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for word in words %}
+                <tr>
+                    {% for zi in zis %}
+                    <td>{{ word.word }}</td>
+                    <td>{{ word.IDS }}</td>
+                    <td>{{ zi.ZiIDS }}</td>
+                    <td>{{ word.part }}</td>
+                    <td><img src={{ zi.search_icon }}></td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <br>
+        <br>
+        <div id="container">
+            <div id="mainWord">
+                <h1>{{ word.word }}</h1>
+                <h3>IDS:{{ word.IDS }}</h3>
+            </div>
+
+            <div id="wordPart">
+                <h1>{{ word.part }}</h1><br>
+            </div>
+
+            <div id="relationWords">
+                relationWords
+            </div>
+
+            <div id="otherFeature">
+                other<br>Feature<br>
+                <input type="button" id="wordOrder" value="筆順">
+                <br>
+                <input type="button" id="wordStory" value="故事">
+                <br>
+                <input type="button" id="wordEvolution" value="漢字源流">
+                <br>
+                <input type="button" id="makeWords" value="造詞">
+            </div>
+            {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+{% endblock %}
+<!--子樣板可在 navbar 區塊中覆寫導覽列的內容。
+    如子樣板未覆寫該區塊，則會自動套用 Django Base Template 中的導覽列。 -->
